@@ -1,4 +1,6 @@
 use std::sync::Arc;
+use std::thread;
+use std::time::Duration;
 
 use crate::stick::Stick;
 
@@ -33,14 +35,14 @@ impl Philosopher {
                 self.right_stick.acquire();
             }
 
-            self.say("Dining");
+            self.say("Dining.");
             self.dine();
 
             self.say("Releasing sticks.");
             self.left_stick.release();
             self.right_stick.release();
 
-            self.say("Thinking");
+            self.say("Thinking.");
             self.think();
         }
     }
@@ -54,10 +56,10 @@ impl Philosopher {
     }
 
     fn dine(&self) {
-        // thread::sleep(Duration::from_millis(1000));
+        thread::sleep(Duration::from_millis(500));
     }
 
     fn think(&self) {
-        // thread::sleep(Duration::from_millis(1000));
+        thread::sleep(Duration::from_millis(500));
     }
 }
